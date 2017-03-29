@@ -1,18 +1,13 @@
 var data = {
-  color: "red",
-  buttons: [
-    { color: "red" },
-    { color: "green" },
-    { color: "blue" }
-  ]
+  color: "red"
 }
 
 Vue.component('color-button', {
-  props: ['state'],
-  template: '<button v-on:click="buttonClicked">{{ state.color }}</button>',
+  props: ['color'],
+  template: '<button v-on:click="buttonClicked">{{ color }}</button>',
   methods: {
     buttonClicked: function () {
-      data.color = this.state.color;
+      data.color = this.color;
     }
   },
 });
