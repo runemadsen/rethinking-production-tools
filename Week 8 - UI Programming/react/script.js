@@ -19,19 +19,32 @@ var ColorButton = React.createClass({
 
 });
 
+var Page = React.createClass({
+  displayName: "Page",
+
+  render: function () {
+    return React.createElement(
+      "p",
+      null,
+      "The current color is ",
+      this.props.currentColor
+    );
+  }
+});
+
 var App = React.createClass({
   displayName: "App",
 
 
   getInitialState: function () {
     return {
-      color: this.props.color
+      currentColor: this.props.currentColor
     };
   },
 
-  changeState: function (color) {
+  changeState: function (newColor) {
     this.setState({
-      color: color
+      currentColor: newColor
     });
   },
 
@@ -42,15 +55,10 @@ var App = React.createClass({
       React.createElement(ColorButton, { color: "red", buttonClicked: this.changeState }),
       React.createElement(ColorButton, { color: "green", buttonClicked: this.changeState }),
       React.createElement(ColorButton, { color: "blue", buttonClicked: this.changeState }),
-      React.createElement(
-        "p",
-        null,
-        "The current color is ",
-        this.state.color
-      )
+      React.createElement(Page, { currentColor: this.state.currentColor })
     );
   }
 
 });
 
-ReactDOM.render(React.createElement(App, { color: "red" }), document.getElementById('app'));
+ReactDOM.render(React.createElement(App, { currentColor: "red" }), document.getElementById('app'));
