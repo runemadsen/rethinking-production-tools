@@ -1,5 +1,5 @@
 var data = {
-  color: "red"
+  currentColor: "red"
 }
 
 Vue.component('color-button', {
@@ -7,9 +7,14 @@ Vue.component('color-button', {
   template: '<button v-on:click="buttonClicked">{{ color }}</button>',
   methods: {
     buttonClicked: function () {
-      data.color = this.color;
+      data.currentColor = this.color;
     }
   },
+});
+
+Vue.component('page', {
+  props: ['currentColor'],
+  template: '<p>The current color is {{ currentColor }}</p>'
 });
 
 var app = new Vue({
